@@ -1,0 +1,44 @@
+mongod //to start server
+mongosh //mongo shell
+
+show dbs //show databases
+show collections //show tables
+
+use shopDB //make new db named shop
+
+db.products.insertOne({_id: 1, name:"pen", price:1.20})
+db.products.insertOne({_id: 2, name:"pencil", price:0.80})
+//add data to products
+
+db.products.find() //show all data in products
+db.products.find({name:"pencil"}) //data where name=pencil
+db.products.find({price:{$gt:1}}) //data where price is >1
+db.products.find({_id:1},{name:1,_id:0}) //data with id=1, display name only
+
+db.products.updateOne({_id:1},{$set:{"stock":32}})
+//where id=1, make new field stock=32
+db.products.updateOne({_id:2},{$set:{"stock":18}})
+//where id=2, make new field stock=32
+
+db.products.deleteOne({_id:2})
+
+db.products.insertOne({
+    _id:3,
+    name:"rubber",
+    price:1.30,
+    stock:43,
+    reviews:[
+    {
+        authorName:"Sally",
+        rating:5,
+        revew:"Best rubber ever!"
+    },
+    {
+        authorName:"John",
+        rating:5,
+        review:"Awesome rubber!"
+    }
+    ]
+})
+
+db.dropDatabase()
